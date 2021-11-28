@@ -1,6 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import {ApolloClient, gql, InMemoryCache} from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: process.env.RICK_AND_MORTY_API,
+  cache: new InMemoryCache()
+})
+
+console.log('===>', process.env.RICK_AND_MORTY_API )
+
+client.query({
+  query: gql`
+    query GetAllCharacters {
+      characters{
+        results {
+          id
+          name
+          image
+          status
+          species
+          location {
+            name
+          }
+        }
+      }
+    }
+  `
+})
+.then(result => console.log(result))
 
 ReactDOM.render(
   <React.StrictMode>
