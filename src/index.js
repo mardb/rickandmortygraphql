@@ -8,7 +8,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-console.log('===>', process.env.RICK_AND_MORTY_API )
+console.log('===...', process.env.RICK_AND_MORTY_API)
 
 client.query({
   query: gql`
